@@ -5,7 +5,7 @@ fn average(numbers: &[i32]) -> f32 {
 }
 
 fn median(numbers: &mut [i32]) -> i32 {
-    numbers.sort();
+    numbers.sort_unstable();
     let mid = numbers.len() / 2;
     numbers[mid]
 }
