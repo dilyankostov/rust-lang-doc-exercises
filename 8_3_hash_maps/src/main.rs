@@ -4,10 +4,14 @@ fn average(numbers: &[i32]) -> f32 {
     numbers.iter().sum::<i32>() as f32 / numbers.len() as f32
 }
 
-fn median(numbers: &mut [i32]) -> i32 {
+fn median(numbers: &mut [i32]) -> f64 {
     numbers.sort_unstable();
     let mid = numbers.len() / 2;
-    numbers[mid]
+    if numbers.len() % 2 == 1 {
+        numbers[mid] as f64
+    } else {
+        (numbers[mid] + numbers[mid - 1]) as f64 / 2.0
+    }
 }
 
 fn mode(numbers: &[i32]) -> Option<i32> {
