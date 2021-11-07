@@ -10,18 +10,14 @@ fn median(numbers: &mut [i32]) -> i32 {
     numbers[mid]
 }
 
-fn mode(numbers: &[i32]) -> i32 {
-    let mut occurrences = HashMap::new();
+fn mode(numbers: &[i32]) -> Option<i32> {
+    let mut counts = HashMap::new();
 
-    for &value in numbers {
-        *occurrences.entry(value).or_insert(0) += 1;
-    }
-
-    occurrences
-        .into_iter()
-        .max_by_key(|&(_, count)| count)
-        .map(|(val, _)| val)
-        .expect("Cannot compute the mode of zero numbers")
+    numbers.iter().copied().max_by_key(|&n| {
+        let count = counts.entry(n).or_insert(0);
+        *count += 1;
+        *count
+    })
 }
 
 fn main() {
@@ -29,5 +25,5 @@ fn main() {
 
     println!("AVERAGE: {}", average(&numbers));
     println!("MEDIAN: {}", median(&mut numbers));
-    println!("MODE: {}", mode(&numbers));
+    println!("MODE: {:?}", mode(&numbers));
 }
