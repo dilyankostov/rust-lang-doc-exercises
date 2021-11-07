@@ -1,0 +1,1 @@
+This is to go through the excercises in the rust book https://doc.rust-lang.org/book/
